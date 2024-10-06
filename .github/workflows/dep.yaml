@@ -19,5 +19,4 @@ jobs:
     - name: Get Current Branch
       id: get_branch
       run: |
-        echo "branch=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
-        echo "Current branch: ${GITHUB_REF#refs/heads/}"  # Output the branch name to the log
+        echo echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
