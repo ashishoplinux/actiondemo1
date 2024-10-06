@@ -1,0 +1,21 @@
+name: Deploy to Windows Server
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment (production, development, staging)'
+        required: true
+        default: 'development'
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Get Current Branch
+      id: get_branch
+      run: echo "branch=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
